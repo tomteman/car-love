@@ -10,10 +10,11 @@ import { FirebaseProvider } from './../../providers/firebase/firebase';
 })
 export class RegisteredCars {
   cars: FirebaseListObservable<any[]>;
-  newItem;
+  newItem = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseProvider: FirebaseProvider) {
     this.cars = this.firebaseProvider.getCars();
+    console.log(this.cars);
   }
 
   ionViewDidLoad() {

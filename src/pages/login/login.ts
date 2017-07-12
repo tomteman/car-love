@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { HomePage } from '../home/home'
+
 import firebase from 'firebase';
 
 /**
@@ -41,10 +43,9 @@ signIn(phoneNumber: number){
               confirmationResult.confirm(data.confirmationCode)
                 .then(function (result) {
                   // User signed in successfully.
-                  const phoneNumber = result.user.phoneNumber;
-                  console.log(phoneNumber);
-
-
+                  const phone = result.user.phoneNumber;
+                  console.log(phone);
+                  this.navCtrl.push(HomePage);
                   // ...
                 }).catch(function (error) {
                   // User couldn't sign in (bad verification code?)

@@ -3,25 +3,22 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
-
-
-import firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage: any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth) {
     this.rootPage = 'LoginPage';
-    const unsubscribe = firebase.auth().onAuthStateChanged( user => {
-      if (user){
+    afAuth.authState.subscribe(res => {
+      if (res && res.uid) {
+        console.log(res.phoneNumber);
         this.rootPage = HomePage;
-        unsubscribe();
       } else {
         this.rootPage = 'LoginPage';
-        unsubscribe();
       }
     });
 
@@ -30,6 +27,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
     });
   }
 }

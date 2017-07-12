@@ -1,0 +1,27 @@
+<!--
+  Generated template for the Park page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Park</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label stacked>Parking spot number</ion-label>
+    <ion-input type="number" [(ngModel)]="parkingSpot"></ion-input>
+  </ion-item>
+
+  <button ion-button id="sign-in-button" (click)="park()">
+    Park!
+  </button>
+
+</ion-content>
